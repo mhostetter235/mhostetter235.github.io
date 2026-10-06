@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Max [Last Name] — Portfolio</title>
+<meta name="description" content="Max, Information Science student at CU Boulder working with data and AI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+/* Colors: change these to restyle the page (match nba-sql.html) */
+:root {
+  --paper: #F5F7FA;
+  --panel: #FFFFFF;
+  --ink:   #14213D;
+  --muted: #5B6577;
+  --rule:  #D8DEE7;
+  --accent:#E8601C;
+  --link:  #2F5D8A;
+  --code-bg:#14213D;
+  --code-fg:#E6EBF2;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:#0F1729; --panel:#16213A; --ink:#E8EDF5; --muted:#9AA6BA;
+    --rule:#2A3756; --accent:#F27A3D; --link:#7FA9D6; --code-bg:#0A1120;
+  }
+}
+:root[data-theme="dark"] {
+  --paper:#0F1729; --panel:#16213A; --ink:#E8EDF5; --muted:#9AA6BA;
+  --rule:#2A3756; --accent:#F27A3D; --link:#7FA9D6; --code-bg:#0A1120;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 17px/1.6 "IBM Plex Sans", system-ui, sans-serif; }
+a { color: var(--link); text-underline-offset: 3px; }
+a:hover { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+h1, h2, h3 { font-family: "Barlow Condensed", sans-serif; line-height: 1.02; margin: 0; }
+p { margin: 0 0 16px; }
+
+/* Nav */
+.nav { border-bottom: 1px solid var(--rule); }
+.nav .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-top: 14px; padding-bottom: 14px; }
+.nav .name { font: 700 22px/1 "Barlow Condensed", sans-serif; color: var(--ink); text-decoration: none; white-space: nowrap; }
+.nav ul { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; font-size: 15px; }
+.nav ul a { color: var(--muted); text-decoration: none; }
+.nav ul a:hover { color: var(--ink); }
+
+/* Hero */
+.hero { padding: 88px 0 80px; }
+.hero h1 { font-size: clamp(64px, 13vw, 148px); font-weight: 700; letter-spacing: -.015em; margin-bottom: 24px; }
+.hero .lede { font-size: clamp(20px, 2.6vw, 26px); line-height: 1.4; max-width: 30em; margin-bottom: 28px; }
+.hero .meta { display: flex; flex-wrap: wrap; gap: 8px 28px; color: var(--muted); font-size: 15px; margin: 0; padding: 0; list-style: none; }
+.hero .meta a { color: var(--muted); }
+.hero .meta a:hover { color: var(--accent); }
+
+/* Sections */
+section { padding: 72px 0; border-top: 1px solid var(--rule); }
+h2 { font-size: clamp(34px, 5vw, 46px); font-weight: 700; margin-bottom: 28px; }
+
+/* Featured project */
+.project {
+  display: grid; grid-template-columns: 1fr; border: 1px solid var(--rule);
+  border-radius: 8px; overflow: hidden; background: var(--panel);
+}
+.project .body { padding: 28px; }
+.project h3 { font-size: 34px; font-weight: 700; margin-bottom: 10px; }
+.project .tools { font-size: 14px; color: var(--accent); font-weight: 600; margin-bottom: 14px; }
+.project p { color: var(--muted); }
+.project .stats { display: flex; gap: 28px; margin: 20px 0 24px; padding: 0; list-style: none; font-size: 14px; color: var(--muted); }
+.project .stats b { display: block; font: 700 32px/1 "Barlow Condensed", sans-serif; color: var(--ink); }
+.project pre {
+  margin: 0; background: var(--code-bg); color: var(--code-fg); padding: 28px;
+  font: 400 13px/1.7 "JetBrains Mono", ui-monospace, monospace; overflow-x: auto;
+}
+.project pre .k { color: #FF9A5C; }
+.project pre .s { color: #9FD6A8; }
+.button {
+  display: inline-block; background: var(--ink); color: var(--paper); text-decoration: none;
+  font-weight: 600; font-size: 15px; padding: 11px 18px; border-radius: 4px;
+}
+.button:hover { background: var(--accent); color: #fff; }
+.button + .text-link { margin-left: 18px; font-size: 15px; }
+@media (min-width: 820px) {
+  .project { grid-template-columns: 1.15fr 1fr; }
+  .project pre { display: flex; align-items: center; }
+}
+
+/* Empty slot for the next project */
+.slot {
+  margin-top: 20px; border: 2px dashed var(--rule); border-radius: 8px; padding: 24px 28px;
+  color: var(--muted); font-size: 15px;
+}
+.slot strong { color: var(--ink); display: block; font-size: 17px; margin-bottom: 2px; }
+
+/* About */
+.about { display: grid; grid-template-columns: 1fr; gap: 32px; }
+.about .bio { max-width: 36em; }
+.skills h3 { font-size: 22px; font-weight: 600; margin-bottom: 12px; }
+.skills ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.skills li { border: 1px solid var(--rule); background: var(--panel); border-radius: 4px; padding: 4px 10px; font-size: 15px; }
+@media (min-width: 820px) { .about { grid-template-columns: 1.5fr 1fr; gap: 56px; } }
+
+/* Contact */
+.contact p { font-size: 20px; max-width: 30em; }
+.contact ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 12px 28px; font-size: 18px; }
+
+footer { border-top: 1px solid var(--rule); padding: 28px 0 44px; color: var(--muted); font-size: 14px; }
+
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .hero { padding: 56px 0 56px; }
+  section { padding: 56px 0; }
+  .nav ul { gap: 14px; font-size: 14px; }
+  .project .body, .project pre { padding: 22px; }
+}
+</style>
+</head>
+<body>
+
+<!-- EDIT: put your full name here and in the h1 below -->
+<header class="nav">
+  <div class="wrap">
+    <a class="name" href="#top">Max [Last Name]</a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<div class="hero">
+  <div class="wrap">
+    <h1>Max [Last Name]</h1>
+    <p class="lede">Information Science student at CU Boulder, focused on data and AI. I build things that turn messy data into answers people can use.</p>
+    <ul class="meta">
+      <li>Boulder, Colorado</li>
+      <li><a href="https://github.com/YOUR-USERNAME">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/YOUR-PROFILE">LinkedIn</a></li>
+      <li><a href="resume.pdf">Resume</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ======================= PROJECTS ======================= -->
+<section id="projects">
+  <div class="wrap">
+    <h2>Projects</h2>
+
+    <article class="project">
+      <div class="body">
+        <h3>What separates the NBA's best players?</h3>
+        <p class="tools">SQL, SQLite, Python, Jupyter</p>
+        <p>Five seasons of Basketball-Reference data in seven related tables. I tested the data for problems, then wrote queries using joins, CTEs and window functions to answer questions about scoring, value and player development.</p>
+        <ul class="stats">
+          <li><b>963</b>players</li>
+          <li><b>2,785</b>stat lines</li>
+          <li><b>7</b>tables</li>
+        </ul>
+        <a class="button" href="nba-sql.html">Read the write-up</a>
+        <a class="text-link" href="https://github.com/YOUR-USERNAME/YOUR-USERNAME.github.io/blob/main/nba_sql_analysis.ipynb">Notebook</a>
+      </div>
+<pre aria-hidden="true"><code><span class="k">SELECT</span> p.player_name,
+       t.abbr_name <span class="k">AS</span> team,
+       ps.points
+<span class="k">FROM</span> player_stats ps
+<span class="k">JOIN</span> players p <span class="k">ON</span> p.id = ps.player_id
+<span class="k">JOIN</span> teams   t <span class="k">ON</span> t.id = ps.team_id
+<span class="k">JOIN</span> seasons s <span class="k">ON</span> s.id = ps.season_id
+<span class="k">WHERE</span> s.season_name = <span class="s">'2023-24'</span>
+<span class="k">ORDER BY</span> ps.points <span class="k">DESC</span>
+<span class="k">LIMIT</span> 5;</code></pre>
+    </article>
+
+    <!-- To add a project: copy the <article class="project"> block above,
+         change the text and link, then delete this placeholder. -->
+    <div class="slot">
+      <strong>Next project</strong>
+      Space for your next project. Copy the card above to add it.
+    </div>
+  </div>
+</section>
+
+<!-- ======================= ABOUT ======================= -->
+<section id="about">
+  <div class="wrap about">
+    <div class="bio">
+      <h2>About</h2>
+      <!-- EDIT: make this sound like you -->
+      <p>I'm a junior studying Information Science at CU Boulder, with a focus on AI and data. I like projects where the hard part is figuring out which questions the data can actually answer, and then checking whether it can be trusted.</p>
+      <p>Outside of class I teach myself new tools, from Linux and Python to building with AI agents.</p>
+    </div>
+    <div class="skills">
+      <h3>Tools I use</h3>
+      <!-- EDIT: add or remove skills -->
+      <ul>
+        <li>SQL</li>
+        <li>Python</li>
+        <li>pandas</li>
+        <li>Jupyter</li>
+        <li>Git and GitHub</li>
+        <li>Linux</li>
+        <li>HTML and CSS</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= CONTACT ======================= -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <h2>Contact</h2>
+    <p>I'm looking for internships in data and AI. The fastest way to reach me is email.</p>
+    <!-- EDIT: your email, GitHub and LinkedIn -->
+    <ul>
+      <li><a href="mailto:you@example.com">you@example.com</a></li>
+      <li><a href="https://github.com/YOUR-USERNAME">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/YOUR-PROFILE">LinkedIn</a></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">Max [Last Name], 2026</div>
+</footer>
+
+</body>
+</html>
