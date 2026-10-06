@@ -98,18 +98,6 @@ h2 { font-size: clamp(34px, 5vw, 46px); font-weight: 700; margin-bottom: 28px; }
 }
 .slot strong { color: var(--ink); display: block; font-size: 17px; margin-bottom: 2px; }
 
-/* About */
-.about { display: grid; grid-template-columns: 1fr; gap: 32px; }
-.about .bio { max-width: 36em; }
-.skills h3 { font-size: 22px; font-weight: 600; margin-bottom: 12px; }
-.skills ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
-.skills li { border: 1px solid var(--rule); background: var(--panel); border-radius: 4px; padding: 4px 10px; font-size: 15px; }
-@media (min-width: 820px) { .about { grid-template-columns: 1.5fr 1fr; gap: 56px; } }
-
-/* Contact */
-.contact p { font-size: 20px; max-width: 30em; }
-.contact ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 12px 28px; font-size: 18px; }
-
 footer { border-top: 1px solid var(--rule); padding: 28px 0 44px; color: var(--muted); font-size: 14px; }
 
 @media (max-width: 560px) {
@@ -123,15 +111,12 @@ footer { border-top: 1px solid var(--rule); padding: 28px 0 44px; color: var(--m
 </head>
 <body>
 
-<!-- EDIT: put your full name here and in the h1 below -->
 <header class="nav">
   <div class="wrap">
     <a class="name" href="#top">Max Hostetter</a>
     <nav aria-label="Main">
       <ul>
         <li><a href="#projects">Projects</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
   </div>
@@ -144,7 +129,7 @@ footer { border-top: 1px solid var(--rule); padding: 28px 0 44px; color: var(--m
     <h1>Max Hostetter</h1>
     <ul class="meta">
       <li>Boulder, Colorado</li>
-      <li><a href="https://github.com/YOUR-USERNAME">GitHub</a></li>
+      <li><a href="https://github.com/mhostetter235">GitHub</a></li>
       <li><a href="https://www.linkedin.com/in/YOUR-PROFILE">LinkedIn</a></li>
       <li><a href="resume.pdf">Resume</a></li>
     </ul>
@@ -167,7 +152,7 @@ footer { border-top: 1px solid var(--rule); padding: 28px 0 44px; color: var(--m
           <li><b>7</b>tables</li>
         </ul>
         <a class="button" href="nba-sql.html">Read the write-up</a>
-        <a class="text-link" href="https://github.com/YOUR-USERNAME/YOUR-USERNAME.github.io/blob/main/nba_sql_analysis.ipynb">Notebook</a>
+        <a class="text-link" href="https://github.com/mhostetter235/mhostetter235.github.io/blob/main/nba_sql_analysis.ipynb">Notebook</a>
       </div>
 <pre aria-hidden="true"><code><span class="k">SELECT</span> p.player_name,
        t.abbr_name <span class="k">AS</span> team,
@@ -190,49 +175,10 @@ footer { border-top: 1px solid var(--rule); padding: 28px 0 44px; color: var(--m
   </div>
 </section>
 
-<!-- ======================= ABOUT ======================= -->
-<section id="about">
-  <div class="wrap about">
-    <div class="bio">
-      <h2>About</h2>
-      <!-- EDIT: make this sound like you -->
-      <p>I'm a junior studying Information Science at CU Boulder, with a focus on AI and data. I like projects where the hard part is figuring out which questions the data can actually answer, and then checking whether it can be trusted.</p>
-      <p>Outside of class I teach myself new tools, from Linux and Python to building with AI agents.</p>
-    </div>
-    <div class="skills">
-      <h3>Tools I use</h3>
-      <!-- EDIT: add or remove skills -->
-      <ul>
-        <li>SQL</li>
-        <li>Python</li>
-        <li>pandas</li>
-        <li>Jupyter</li>
-        <li>Git and GitHub</li>
-        <li>Linux</li>
-        <li>HTML and CSS</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ======================= CONTACT ======================= -->
-<section id="contact" class="contact">
-  <div class="wrap">
-    <h2>Contact</h2>
-    <p>I'm looking for internships in data and AI. The fastest way to reach me is email.</p>
-    <!-- EDIT: your email, GitHub and LinkedIn -->
-    <ul>
-      <li><a href="mailto:you@example.com">you@example.com</a></li>
-      <li><a href="https://github.com/YOUR-USERNAME">GitHub</a></li>
-      <li><a href="https://www.linkedin.com/in/YOUR-PROFILE">LinkedIn</a></li>
-    </ul>
-  </div>
-</section>
-
 </main>
 
 <footer>
-  <div class="wrap">Max [Last Name], 2026</div>
+  <div class="wrap">Max Hostetter, 2026</div>
 </footer>
 
 </body>
