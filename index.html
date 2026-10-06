@@ -140,26 +140,25 @@ footer { border-top: 1px solid var(--rule); padding: 28px 0 44px; color: var(--m
 
     <article class="project">
       <div class="body">
-        <h3>INFO 3401 Portfolio Project?</h3>
-        <p class="tools">SQL, SQLite, Python, Jupyter</p>
-        <p>Five seasons of Basketball-Reference data in seven related tables. I tested the data for problems, then wrote queries using joins to answer questions about scoring, value and player development.</p>
+        <h3>NBA Scoring Analysis in SQL</h3>
+        <p class="tools">SQL, SQLite, Python, pandas, matplotlib, Jupyter</p>
+        <p>Five seasons of Basketball-Reference data in seven related tables. I wrote SQL queries using multi-table joins, grouping, filtering and concatenation to find which colleges, countries and coaches produced the most scoring, then charted each result.</p>
         <ul class="stats">
           <li><b>963</b>players</li>
           <li><b>2,785</b>stat lines</li>
           <li><b>7</b>tables</li>
         </ul>
-          <a class="button" href="https://github.com/mhostetter235/mhostetter235.github.io/blob/main/nba_sql_analysis.ipynb">Read the write-up</a>
+        <a class="button" href="https://github.com/mhostetter235/mhostetter235.github.io/blob/main/nba_sql_analysis.ipynb">Read the write-up</a>
       </div>
-<pre aria-hidden="true"><code><span class="k">SELECT</span> p.player_name,
-       t.abbr_name <span class="k">AS</span> team,
-       ps.points
-<span class="k">FROM</span> player_stats ps
-<span class="k">JOIN</span> players p <span class="k">ON</span> p.id = ps.player_id
-<span class="k">JOIN</span> teams   t <span class="k">ON</span> t.id = ps.team_id
-<span class="k">JOIN</span> seasons s <span class="k">ON</span> s.id = ps.season_id
-<span class="k">WHERE</span> s.season_name = <span class="s">'2023-24'</span>
-<span class="k">ORDER BY</span> ps.points <span class="k">DESC</span>
-<span class="k">LIMIT</span> 5;</code></pre>
+<pre aria-hidden="true"><code><span class="k">SELECT</span> p.college,
+       <span class="k">COUNT</span>(<span class="k">DISTINCT</span> p.id) <span class="k">AS</span> num_players,
+       <span class="k">SUM</span>(ps.points) <span class="k">AS</span> total_points
+<span class="k">FROM</span> players p
+<span class="k">JOIN</span> player_stats ps <span class="k">ON</span> ps.player_id = p.id
+<span class="k">WHERE</span> p.college <span class="k">IS NOT NULL</span>
+<span class="k">GROUP BY</span> p.college
+<span class="k">HAVING COUNT</span>(<span class="k">DISTINCT</span> p.id) &gt;= 10
+<span class="k">ORDER BY</span> total_points <span class="k">DESC</span>;</code></pre>
     </article>
 
     <!-- To add a project: copy the <article class="project"> block above,
